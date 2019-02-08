@@ -1,14 +1,21 @@
 'use strict';
 
-// Wrap everything in an anonymous function to avoid polluting the global namespace
-(function () {
-  // Use the jQuery document ready signal to know when everything has been initialized
-  $(document).ready(function () {
-    // Tell Tableau we'd like to initialize our extension
-    tableau.extensions.initializeAsync().then(function () {
-      // Get the dashboard name from the tableau namespace and set it as our title
-      const dashboardName = tableau.extensions.dashboardContent.dashboard.name;
+$(document).ready(function() {
+
+  // Hook up an event handler for the load button click.
+  // Wait to initialize until the button is clicked.
+  $("#initializeButton").click(function() {
+
+    // Disable the button after it's been clicked
+    $("#initializeButton").prop('disabled', true);
+
+    tableau.extensions.initializeAsync().then(function() {
+
+      // Initialization succeeded! Get the dashboard
+      var dashboard = tableau.extensions.dashboardContent.dashboard;
+
+      // Display the name of dashboard in the UI
       $("#DashboardName").html(dashboardName);
     });
   });
-})();
+});
