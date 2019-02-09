@@ -5,7 +5,7 @@
   // Use the jQuery document ready signal to know when everything has been initialized
   $(document).ready(function () {
     // Tell Tableau we'd like to initialize our extension
-    tableau.extensions.initializeAsync().then(function () {
+    tableau.extensions.initializeAsync({'configure': configure}).then(function () {
       // Once the extension is initialized, ask the user to choose a sheet
       showChooseSheetDialog();
     });
