@@ -53,5 +53,38 @@
             </div>
           </div>
         </div>
+
+	  
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=1005145659681437';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  
+    <!-- Your embedded video player code -->
+  <div class="fb-post" 
+  data-href="https://www.facebook.com/facebook/videos/10153231379946729/">
+  data-allowfullscreen="true"
+  data-autoplay="true" 
+  data-show-text="true">
+  </div>
+  
+      </div>
+    </div>
+    
+  
+     <!--Settings:
+    - data-allowfullscreen: Allow the video to be played in fullscreen mode. The default is false.
+    - data-autoplay: Automatically start playing the video when the page loads. The video will be played without sound (muted). People can turn on sound via the video player controls. This setting does not apply to mobile devices. The default is false.
+    - data-width: The width of the video container. The minimum is 220px. The default is auto. 
+    - data-show-text: Include text from the Facebook post associated with the video. The default is false. 
+    - data-show-captions: Show captions (if available). Captions are only available on desktop.
+    --> 
+
+
       </body>
  </html>

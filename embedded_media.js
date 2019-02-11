@@ -69,7 +69,7 @@
     }
 
     // Get the worksheet object we want to get the selected marks for
-    const worksheet = getSelectedSheet(worksheetName);
+    const worksheet = 'Embedded';
 
     // Set our title to an appropriate value
     $('#selected_marks_title').text(worksheet.name);
@@ -136,10 +136,5 @@
     $('#show_choose_sheet_button').click(showChooseSheetDialog);
   }
 
-  function getSelectedSheet (worksheetName) {
-    // Go through all the worksheets in the dashboard and find the one we want
-    return tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) {
-      return sheet.name === worksheetName;
-    });
-  }
+
 })();
