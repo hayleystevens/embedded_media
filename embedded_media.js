@@ -27,7 +27,7 @@
     // The first step in choosing a sheet will be asking Tableau what sheets are available
     const worksheets = tableau.extensions.dashboardContent.dashboard.worksheets;
 
-    // Next, we loop through all of these worksheets and add buttons for each one
+    // Next, we loop through all of these worksheets add add buttons for each one
     worksheets.forEach(function (worksheet) {
       // Declare our new button which contains the sheet name
       const button = createButton(worksheet.name);
@@ -59,15 +59,7 @@
     return button;
   }
 
-  // This variable will save off the function we can call to unregister listening to marks-selected events
-  let unregisterEventHandlerFunction;
-
   function loadSelectedMarks (worksheetName) {
-    // Remove any existing event listeners
-    if (unregisterEventHandlerFunction) {
-      unregisterEventHandlerFunction();
-    }
-
     // Get the worksheet object we want to get the selected marks for
     const worksheet = getSelectedSheet(worksheetName);
 
@@ -75,7 +67,7 @@
     $('#selected_marks_title').text(worksheet.name);
 
     // Call to get the selected marks for our sheet
-    worksheet.getMarksAsync().then(function (marks) {
+    worksheet.getSelectedMarksAsync().then(function (marks) {
       // Get the first DataTable for our selected marks (usually there is just one)
       const worksheetData = marks.data[0];
 
@@ -94,12 +86,6 @@
 
       // Populate the data table with the rows and columns we just pulled out
       populateDataTable(data, columns);
-    });
-
-    // Add an event listener for the selection changed event on this sheet.
-    unregisterEventHandlerFunction = worksheet.addEventListener(tableau.TableauEventType.MarkSelectionChanged, function (selectionEvent) {
-      // When the selection changes, reload the data
-      loadSelectedMarks(worksheetName);
     });
   }
 
