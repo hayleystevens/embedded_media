@@ -75,7 +75,7 @@
     $('#selected_marks_title').text(worksheet.name);
 
     // Call to get the selected marks for our sheet
-    worksheet.getFiltersAsync().then(function (marks) {
+    worksheet.getMarksAsync().then(function (marks) {
       // Get the first DataTable for our selected marks (usually there is just one)
       const worksheetData = marks.data[0];
 
