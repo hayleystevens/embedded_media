@@ -69,13 +69,13 @@
     }
 
     // Get the worksheet object we want to get the selected marks for
-    const worksheet = 'Embedded';
+    const worksheet = getSelectedSheet(worksheetName);
 
     // Set our title to an appropriate value
     $('#selected_marks_title').text(worksheet.name);
 
     // Call to get the selected marks for our sheet
-    worksheet.getSelectedMarksAsync().then(function (marks) {
+    worksheet.getFiltersAsync().then(function (marks) {
       // Get the first DataTable for our selected marks (usually there is just one)
       const worksheetData = marks.data[0];
 
@@ -136,5 +136,10 @@
     $('#show_choose_sheet_button').click(showChooseSheetDialog);
   }
 
-
+  function getSelectedSheet (worksheetName) {
+    // Go through all the worksheets in the dashboard and find the one we want
+    return tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) {
+      return sheet.name === worksheetName;
+    });
+  }
 })();
