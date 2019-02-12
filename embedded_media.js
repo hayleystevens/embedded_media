@@ -14,12 +14,11 @@ $(document).ready(function() {
       var dashboard = tableau.extensions.dashboardContent.dashboard;
 
       // Display the name of dashboard in the UI
-      $("#resultBox").html("This dashboard is called " + dashboard.name);
+      $("#resultBox").html("This dashboard is called " + dashboard.name+". The sheet is called" +sheetname);
     }, function(err) {
 
       // something went wrong in initialization
       $("#resultBox").html("Error while Initializing: " + err.toString());
-      $("#SheetName").html(dashboard.name);
     });
   });
 });
