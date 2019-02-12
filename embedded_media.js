@@ -74,14 +74,16 @@
       // Map our data into the format which the data table component expects it
       const data = worksheetData.data.map(function (row, index) {
         const rowData = row.map(function (cell) {
-          return cell.formattedValue;
+         return cell.formattedValue;
         });
 
         return rowData;
       });
 
       const columns = worksheetData.columns.map(function (column) {
-        return { title: column.fieldName };
+        if (column.fieldName=="ID"){ 
+          return { title: column.fieldName };
+        }
       });
 
       // Populate the data table with the rows and columns we just pulled out
