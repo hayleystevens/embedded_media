@@ -12,7 +12,7 @@ $(document).ready(function() {
 
       // Initialization succeeded! Get the dashboard
       var dashboard = tableau.extensions.dashboardContent.dashboard;
-      $("#resultBox").html("Da sheet is called " +sheetname)
+      $("#SheetName").html("Da sheet is called " +sheetname)
 
       // Display the name of dashboard in the UI
       $("#resultBox").html("This dashboard is called " + dashboard.name+". The sheet is called" +sheetname);
