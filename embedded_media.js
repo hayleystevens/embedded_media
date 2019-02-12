@@ -6,6 +6,7 @@ $(document).ready(function() {
 
     // Disable the button after it's been clicked
     $("#initializeButton").prop('disabled', true);
+    var sheetname="Highlight Table"
 
     tableau.extensions.initializeAsync().then(function() {
 
@@ -18,6 +19,7 @@ $(document).ready(function() {
 
       // something went wrong in initialization
       $("#resultBox").html("Error while Initializing: " + err.toString());
+      $("#sheet_name").html(sheetname);
     });
   });
 });
