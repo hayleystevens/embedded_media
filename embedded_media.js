@@ -23,9 +23,8 @@ $(document).ready(function() {
     }
 
     function reportSelectedMarks(marks) {
-        var html = "";
-
-        for (var markIndex = 0; markIndex < marks.length; markIndex++) {
+       
+      for (var markIndex = 0; markIndex < marks.length; markIndex++) {
             var pairs = marks[markIndex].getPairs();
             html += "<b>Mark " + markIndex + ":</b><ul>";
 
@@ -38,9 +37,7 @@ $(document).ready(function() {
             html += "</ul>";
         }
 
-        var infoDiv = document.getElementById('markDetails');
-        infoDiv.innerHTML = html;
-    }
+     }
 
       // Display the name of dashboard in the UI
       $("#resultBox").html("This dashboard is called " + dashboard.name+". The sheet is called" +sheetname + markDetails);
