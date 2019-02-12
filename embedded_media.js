@@ -12,7 +12,7 @@ $(document).ready(function() {
 
       // Initialization succeeded! Get the dashboard
       var dashboard = tableau.extensions.dashboardContent.dashboard;
-      $("#SheetName").text(sheetname)
+      $("#SheetName").text(sheetname.value)
 
       function listenToMarksSelection() {
         sheetname.addEventListener(tableau.TableauEventName.MARKS_SELECTION, onMarksSelection);
