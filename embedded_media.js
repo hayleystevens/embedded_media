@@ -43,7 +43,7 @@ $(document).ready(function() {
     }
 
       // Display the name of dashboard in the UI
-      $("#resultBox").html("This dashboard is called " + dashboard.name+". The sheet is called" +sheetname);
+      $("#resultBox").html("This dashboard is called " + dashboard.name+". The sheet is called" +sheetname + markDetails);
     }, function(err) {
 
       // something went wrong in initialization
