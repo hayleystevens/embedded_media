@@ -19,7 +19,7 @@ $(document).ready(function() {
 
       // something went wrong in initialization
       $("#resultBox").html("Error while Initializing: " + err.toString());
-      $("#sheet_name").html(sheetname);
+      $("#SheetName").html(dashboard.name);
     });
   });
 });
