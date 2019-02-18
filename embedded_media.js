@@ -10,13 +10,14 @@
       showChooseSheetDialog();
 
       initializeButtons();
+      listenToMarksSelection();
     });
   });
 
   /**
    * Shows the choose sheet UI. Once a sheet is selected, the data table for the sheet is shown
    */
-  function showChooseSheetDialog () {
+  function showChooseSheetDialog() {
     // Clear out the existing list of sheets
     $('#choose_sheet_buttons').empty();
 
@@ -50,9 +51,9 @@
     $('#choose_sheet_dialog').modal('toggle');
   }
 
-  function createButton (buttonTitle) {
+  function createButton(buttonTitle) {
     const button =
-    $(`<button type='button' class='btn btn-default btn-block'>
+      $(`<button type='button' class='btn btn-default btn-block'>
       ${buttonTitle}
     </button>`);
 
@@ -60,39 +61,39 @@
 
   }
 
-  $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");
-  
-  function listenToMarksSelection() {  
-    viz.addEventListener(tableau.TableauEventName.MARKS_SELECTION, onMarksSelection);  
-}  
+  function listenToMarksSelection() {
+    worksheet.addEventListener(tableau.TableauEventName.MARKS_SELECTION, onMarksSelection);
+  }
 
-function onMarksSelection(marksEvent) {  
-    return marksEvent.getMarksAsync().then(reportSelectedMarks);  
-}  
+  function onMarksSelection(marksEvent) {
+    return marksEvent.getMarksAsync().then(reportSelectedMarks);
+  }
 
-function reportSelectedMarks(marks) {  
-    var html = "";   
-      
-    for (var markIndex = 0; markIndex < marks.length; markIndex++) {  
-        var pairs = marks[markIndex].getPairs();  
-        html += "<b>Mark " + markIndex + ":</b><ul>";  
+  function reportSelectedMarks(marks) {
+    var html = "";
 
-        for (var pairIndex = 0; pairIndex < pairs.length; pairIndex++) {  
-            var pair = pairs[pairIndex];  
-            html += "<li><b>Field Name:</b> " + pair.fieldName;  
-            html += "<br/><b>Value:</b> " + pair.formattedValue + "</li>";  
-        }  
-        html += "</ul>";  
-    }  
+    for (var markIndex = 0; markIndex < marks.length; markIndex++) {
+      var pairs = marks[markIndex].getPairs();
+      html += "<b>Mark " + markIndex + ":</b><ul>";
 
-    var infoDiv = document.getElementById('markDetails');  
-    infoDiv.innerHTML = html;  
-}  
-  function initializeButtons () {
+      for (var pairIndex = 0; pairIndex < pairs.length; pairIndex++) {
+        var pair = pairs[pairIndex];
+        html += "<li><b>Field Name:</b> " + pair.fieldName;
+        html += "<br/><b>Value:</b> " + pair.formattedValue + "</li>";
+      }
+
+      html += "</ul>";
+    }
+
+    var infoDiv = document.getElementById('markDetails');
+    infoDiv.innerHTML = html;
+  }
+
+  function initializeButtons() {
     $('#show_choose_sheet_button').click(showChooseSheetDialog);
   }
 
-  function getSelectedSheet (worksheetName) {
+  function getSelectedSheet(worksheetName) {
     // Go through all the worksheets in the dashboard and find the one we want
     return tableau.extensions.dashboardContent.dashboard.worksheets.find(function (sheet) {
       return sheet.name === worksheetName;
