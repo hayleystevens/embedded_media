@@ -10,7 +10,6 @@
       showChooseSheetDialog();
 
       initializeButtons();
-      listenToMarksSelection();
     });
   });
 
@@ -40,7 +39,7 @@
 
         // Close the dialog and show the data table for this worksheet
         $('#choose_sheet_dialog').modal('toggle');
-        loadSelectedMarks(worksheetName);
+        listenToMarksSelection(worksheetName);
       });
 
       // Add our button to the list of worksheets to choose from
