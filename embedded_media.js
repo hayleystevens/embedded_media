@@ -57,8 +57,11 @@
     </button>`);
 
     return button;
+
   }
 
+  $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");
+  
   function listenToMarksSelection() {  
     viz.addEventListener(tableau.TableauEventName.MARKS_SELECTION, onMarksSelection);  
 }  
