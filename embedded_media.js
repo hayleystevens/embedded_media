@@ -79,25 +79,6 @@
       // Get the first DataTable for our selected marks (usually there is just one)
       const worksheetData = marks.data[0];
 
-    
-      //the data returned from the tableau API
-      var columns = worksheetData.getColumns();
-      var data = worksheetData.getData();
-      
-      //convert to field:values convention
-      function reduceToObjects(cols,data) {
-        var fieldNameMap = $.map(cols, function(col) { return col.getFieldName(); });
-        var dataToReturn = $.map(data, function(d) {
-                        return d.reduce(function(memo, value, idx) {
-                          memo[fieldNameMap[idx]] = value.value; return memo;
-                        }, {});
-                      });
-        return dataToReturn;
-      }
-      
-      var niceData = reduceToObjects(columns, data);
-
-      $('#selected_marks_title').text(niceData);
       // Map our data into the format which the data table component expects it
       const data = worksheetData.data.map(function (row, index) {
         const rowData = row.map(function (cell) {
@@ -108,7 +89,10 @@
       });
 
       const columns = worksheetData.columns.map(function (column) {
-        return { title: column.fieldName };
+        if(column.fieldName == 'ID'){
+          return { title: column.fieldName };
+        }
+        
       });
 
       // Populate the data table with the rows and columns we just pulled out
